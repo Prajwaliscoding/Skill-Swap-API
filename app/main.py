@@ -2,8 +2,8 @@ from fastapi import FastAPI
 
 app = FastAPI()
 
-@app.get("/")
-def root(BaseModel):
+@app.get('/')
+def root():
     return {'message':'Welcome to Skill-Swap API'}
 
     
