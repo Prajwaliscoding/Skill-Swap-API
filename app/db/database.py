@@ -10,7 +10,6 @@ if database_url is None:
     raise ValueError("DATABASE_URL environment variable is not set.")
 
 engine = create_engine(database_url, echo = False)
-Session = sessionmaker(bind = engine)
-session = Session()
+LocalSession = sessionmaker(bind = engine, autocommit=False, autoflush=False)
 
 Base = declarative_base()
