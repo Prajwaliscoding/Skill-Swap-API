@@ -5,6 +5,7 @@ from app.crud.crud import create_user
 from app.db.database import LocalSession, Base, engine
 from app.models import models
 
+models.Base.metadata.create_all(bind=engine)
 router = APIRouter(prefix = "/users", tags = ["Users"])
 
 def get_db():
