@@ -12,5 +12,19 @@ class UserDataOut(BaseModel):
     email: EmailStr
     is_active: bool
 
-    class Config():
-        orm_mode = True
+    model_config = {
+        "from_attributes": True
+    }
+    
+
+
+# 📦 Context: You're using Pydantic v2
+# In Pydantic v1, we used:
+
+# class Config:
+#     orm_mode = True
+# In Pydantic v2, the configuration style changed. Now you use:
+
+# model_config = {
+#     "from_attributes": True
+# }
