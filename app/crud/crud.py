@@ -1,7 +1,8 @@
+# crud.py
 from sqlalchemy.orm import Session
 from app.models.models import Users
 from app.schemas.schemas import CreateUser
-from passlib.context import CryptContext      
+from passlib.context import CryptContext  # type: ignore
 
 # need to install first with pip install "passlib[bcrypt]"
 
