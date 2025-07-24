@@ -4,7 +4,6 @@ from app.models.models import Users
 from app.schemas.schemas import CreateUser
 from passlib.context import CryptContext  # type: ignore   
 
-
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto") 
 
 def get_password_hash(password):
@@ -17,3 +16,5 @@ def create_user(db:Session,  user:CreateUser):
     db.commit()     
     db.refresh(db_user)  
     return db_user
+
+
