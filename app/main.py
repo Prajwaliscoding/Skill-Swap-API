@@ -7,6 +7,4 @@ app = FastAPI()
 def root():
     return {'message':'Welcome to PeerUp, a skill_swap API'}
 
-app.include_router(api.router)
-
-    
+app.include_router(api.router)    
