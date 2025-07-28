@@ -1,3 +1,4 @@
+# auth.py
 from fastapi import APIRouter, HTTPException, Depends
 from sqlalchemy.orm import Session
 from app.schemas.user import UserLogin
