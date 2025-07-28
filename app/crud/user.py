@@ -2,7 +2,8 @@
 from sqlalchemy.orm import Session       
 from app.models.user import Users
 from app.schemas.user import CreateUser
-from passlib.context import CryptContext  # type: ignore   
+from passlib.context import CryptContext  # type: ignore  
+from app.core.security import verify_password 
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto") 
 
@@ -17,4 +18,10 @@ def create_user(db:Session,  user:CreateUser):
     db.refresh(db_user)  
     return db_user
 
-
+def authenticate_user(db:Session, email:str, password:str):
+    user = db.query(Users).filter(Users.email == email).first()
+    if not user:
+        return None
+    if not verify_password(password,str(user.hashed_password)):
+        return None
+    return user
