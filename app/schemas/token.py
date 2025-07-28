@@ -1,3 +1,4 @@
+# schemas/token.py
 from pydantic import BaseModel
 
 class Token(BaseModel):
