@@ -1,6 +1,7 @@
-from passlib.context import CryptContext
+# security.py
+from passlib.context import CryptContext # type: ignore
 from datetime import datetime, timedelta, timezone
-from jose import jwt
+from jose import jwt # type: ignore
 
 from typing import Optional
 import os
