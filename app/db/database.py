@@ -14,3 +14,10 @@ engine = create_engine(database_url, echo = False)
 LocalSession = sessionmaker(bind = engine, autocommit=False, autoflush=False)
 
 Base = declarative_base()
+
+def get_db():
+    db = LocalSession()
+    try:
+        yield db
+    finally:
+        db.close()

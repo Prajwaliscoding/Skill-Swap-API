@@ -1,23 +1,21 @@
-# api/user.py
+# user.py
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from app.schemas.user import CreateUser, UserDataOut
 from app.crud.user import create_user
-from app.db.database import LocalSession, Base, engine
+from app.db.database import get_db, Base, engine  
 from app.models import user
+from app.models.user import Users
+from app.dependencies.auth import get_current_user
 
-user.Base.metadata.create_all(bind=engine)   
+user.Base.metadata.create_all(bind=engine)
 
-router = APIRouter(prefix = "/users", tags = ["Users"])     
+router = APIRouter(prefix="/users", tags=["Users"])
 
-def get_db():
-    db = LocalSession()
-    try:                           
-        yield db
-    finally:
-        db.close()
-
-    
-@router.post("/",response_model=UserDataOut)
-def register_user(user: CreateUser, db: Session = Depends(get_db)):
+@router.post("/", response_model=UserDataOut)
+def register_user(user: CreateUser, db: Session = Depends(get_db)):  
     return create_user(db, user)
+
+@router.get("/me", response_model=UserDataOut)
+def read_users_me(current_user: Users = Depends(get_current_user)):
+    return current_user
