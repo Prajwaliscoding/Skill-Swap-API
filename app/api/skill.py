@@ -1,3 +1,4 @@
+# app/api/skill.py
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from app.schemas.skill import SkillCreate, SkillOut

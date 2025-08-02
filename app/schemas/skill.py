@@ -1,3 +1,4 @@
+# app.schemas.skill.py
 from pydantic import BaseModel, Field
 from typing import Literal, Annotated
 
