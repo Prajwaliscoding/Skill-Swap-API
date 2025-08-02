@@ -1,6 +1,6 @@
 # schemas/user.py
-from pydantic import BaseModel, EmailStr
-from typing import Optional
+from pydantic import BaseModel, EmailStr, Field
+from typing import Optional, Annotated
 
 class CreateUser(BaseModel):     
     name: str
@@ -24,4 +24,4 @@ class UserLogin(BaseModel):
 
 class UserUpdate(BaseModel):
     name:Optional[str]= None
-    bio: Optional[str]= None
+    bio: Annotated[Optional[str], Field(default= None, max_length = 200, title ="Bio of the User", description = "Give your bio in 200 characters.")]

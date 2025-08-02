@@ -17,6 +17,6 @@ class Skills(Base):
     id = Column(Integer, primary_key=True)
     name = Column(String, nullable = False)
     skill_type = Column(String, nullable=False)
-    user_id = Column (Integer, ForeignKey = "users.id")
+    user_id = Column (Integer, ForeignKey("users.id"))
     owner = relationship("Users", back_populates= "skill")
 
