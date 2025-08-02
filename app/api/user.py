@@ -1,8 +1,8 @@
 # user.py
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
-from app.schemas.user import CreateUser, UserDataOut
-from app.crud.user import create_user
+from app.schemas.user import CreateUser, UserDataOut, UserUpdate
+from app.crud.user import create_user, update_user
 from app.db.database import get_db, Base, engine  
 from app.models import user
 from app.models.user import Users
@@ -19,3 +19,8 @@ def register_user(user: CreateUser, db: Session = Depends(get_db)):
 @router.get("/me", response_model=UserDataOut)
 def read_users_me(current_user: Users = Depends(get_current_user)):
     return current_user
+
+@router.put("/me",response_model=UserDataOut)
+def update_profile(updates: UserUpdate, db: Session = Depends(get_db), current_user: Users = Depends(get_current_user)):
+    return update_user(db, current_user, updates)
+    

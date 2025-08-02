@@ -1,5 +1,6 @@
 # schemas/user.py
 from pydantic import BaseModel, EmailStr
+from typing import Optional
 
 class CreateUser(BaseModel):     
     name: str
@@ -20,3 +21,7 @@ class UserDataOut(BaseModel):
 class UserLogin(BaseModel):
     email: EmailStr
     password: str
+
+class UserUpdate(BaseModel):
+    name:Optional[str]= None
+    bio: Optional[str]= None

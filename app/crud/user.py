@@ -1,4 +1,5 @@
 # crud/user.py
+from turtle import update
 from sqlalchemy.orm import Session       
 from app.models.user import Users
 from app.schemas.user import CreateUser
@@ -25,3 +26,13 @@ def authenticate_user(db:Session, email:str, password:str):
     if not verify_password(password,str(user.hashed_password)):
         return None
     return user
+
+def update_user(db, current_user, updates):
+    if updates.name is not None:
+        current_user.name = updates.name
+    if updates.bio is not None:
+        current_user.bio = updates.bio
+    db.commit()
+    db.refresh(current_user)
+    return current_user
+
