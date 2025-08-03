@@ -1,6 +1,6 @@
 # main.py
 from fastapi import FastAPI
-from app.api import user, auth, skill
+from app.api import user, auth, skill, favorites
 
 from app.models import user as user_model
 
@@ -19,3 +19,5 @@ app.include_router(user.router)
 app.include_router(auth.router) 
 
 app.include_router(skill.router)
+
+app.include_router(favorites.router)

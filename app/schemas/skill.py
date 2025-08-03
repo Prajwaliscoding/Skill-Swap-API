@@ -1,6 +1,5 @@
 # app.schemas.skill.py
-from pydantic import BaseModel, Field
-from typing import Literal, Annotated
+from pydantic import BaseModel
 
 class SkillCreate(BaseModel):
     name : str
