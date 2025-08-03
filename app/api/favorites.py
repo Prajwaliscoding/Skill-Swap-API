@@ -1,14 +1,24 @@
 # app.api.favorites.py
 
+from email import message
 from app.dependencies.auth import get_current_user, get_db
 from app.models.user import Users, Skills, Favorites
 from app.schemas.favorites import FavoriteOut
-from app.crud.favorites import add_favorites
-from fastapi import APIRouter, Depends
+from app.crud.favorites import add_favorites, user_favorites
+from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
+from typing import List
 
 router = APIRouter(prefix = "/favorites", tags= ['Favorites'])
 
 @router.post("/{skill_id}",response_model=FavoriteOut)
 def add_favorite(skill_id:int , db: Session = Depends(get_db), current_user : Users = Depends(get_current_user)):
     return add_favorites(skill_id, db, current_user)
+
+@router.get("/",response_model=List[FavoriteOut])
+def list_favorites(db: Session = Depends(get_db), current_user : Users = Depends(get_current_user)):
+    fav = user_favorites(db, current_user)
+    if not fav:
+        raise HTTPException(status_code=404, detail="No favorites found")
+    
+    return fav
