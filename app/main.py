@@ -3,6 +3,7 @@ from fastapi import FastAPI
 from app.api import user, auth, skill
 
 from app.models import user as user_model
+
 from app.db.database import Base, engine  
 
 Base.metadata.create_all(bind=engine)

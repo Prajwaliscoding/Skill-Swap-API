@@ -14,3 +14,8 @@ def create_skill(skill_data: SkillCreate, db: Session,current_user: Users):
     db.refresh(db_skill)
     return db_skill
 
+def get_user_skills(db: Session, current_user: Users):
+    return db.query(Skills).filter(Skills.user_id == current_user.id).all()
+
+def get_all_skills(db: Session):
+    return db.query(Skills).all()
