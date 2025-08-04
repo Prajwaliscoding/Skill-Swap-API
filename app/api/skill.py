@@ -1,10 +1,10 @@
 # app/api/skill.py
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy.orm import Session
 from app.schemas.skill import SkillCreate, SkillOut
 from app.db.database import get_db
 from app.models.user import Skills, Users
-from app.crud.skill import create_skill, delete_skill, get_user_skills, get_all_skills, delete_skill
+from app.crud.skill import create_skill, delete_skill, get_user_skills, get_all_skills, delete_skill, search_by_skills
 from app.dependencies.auth import get_current_user
 from typing import List
 
@@ -36,3 +36,9 @@ def remove_skill(skill_id: int, db: Session = Depends(get_db), current_user: Use
     db.delete(skill)
     db.commit()
     return {"message": "Skill deleted."}
+
+@router.get("/search",response_model= List[SkillOut])
+def search(query : str =Query(..., description = "Search Keyword"), 
+           db:Session = Depends(get_db), 
+           current_user : Users = Depends(get_current_user)):
+    return search_by_skills(query, db, current_user)

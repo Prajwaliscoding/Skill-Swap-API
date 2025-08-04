@@ -23,3 +23,5 @@ def get_all_skills(db: Session):
 def delete_skill(skill_id:int, db:Session, current_user: Users):
     return db.query(Skills).filter(Skills.id == skill_id, Skills.user_id == current_user.id).first()   # Match by skill ID, Ensure the skill belongs to logged-in user
 
+def search_by_skills(query, db, current_user):
+    return db.query(Skills).filter(Skills.name.ilike(f"%{query}%")).all()
