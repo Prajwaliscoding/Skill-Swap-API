@@ -16,13 +16,11 @@ router = APIRouter(prefix = "/favorites", tags= ['Favorites'])
 def add_favorite(skill_id:int , db: Session = Depends(get_db), current_user : Users = Depends(get_current_user)):
     return add_favorites(skill_id, db, current_user)
 
+
 @router.get("/",response_model=List[FavoriteOut])
 def list_favorites(db: Session = Depends(get_db), current_user : Users = Depends(get_current_user)):
-    fav = user_favorites(db, current_user)
-    if not fav:
-        raise HTTPException(status_code=404, detail="No favorites found")
-    
-    return fav
+    return user_favorites(db, current_user)
+
 
 @router.delete("/delete/{skill_id}", response_model=FavoriteOut)
 def remove_from_favorites(skill_id:int , db:Session = Depends(get_db), current_user:Users = Depends(get_current_user)):

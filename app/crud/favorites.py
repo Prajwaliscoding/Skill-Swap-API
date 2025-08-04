@@ -12,8 +12,15 @@ def add_favorites(skill_id:int, db: Session, current_user: Users):
     db.refresh(fav)
     return fav
 
+
 def user_favorites(db: Session, current_user: Users):
-    return db.query(Favorites).filter(Favorites.user_id == current_user.id).all()
+
+    fav = db.query(Favorites).filter(Favorites.user_id == current_user.id).all()
+    if not fav:
+        raise HTTPException(status_code=404, detail="No favorites found")
+    return fav
+    
+
 
 def delete_favorites(skill_id, db, current_user):
     fav = db.query(Favorites).filter(Favorites.skill_id == skill_id, Favorites.user_id == current_user.id).first()
