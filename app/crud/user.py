@@ -1,5 +1,4 @@
 # crud/user.py
-from turtle import update
 from sqlalchemy.orm import Session       
 from app.models.user import Users
 from app.schemas.user import CreateUser
