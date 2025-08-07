@@ -1,4 +1,4 @@
-# SkillSwap API (PeerUp)
+# SkillSwap API
 A FastAPI-based platform where users can list their skills, find others, mark favorites, and connect.
 
 ## Features
