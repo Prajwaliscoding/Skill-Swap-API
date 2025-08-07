@@ -90,6 +90,7 @@ docker run --env-file .env -p 8000:8000 prajwaliscoding/skill-swap-api
 
 ### 5. Access the app
 API Root: http://localhost:8000
+
 Swagger Docs: http://localhost:8000/docs
 
 
