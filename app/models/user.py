@@ -1,5 +1,4 @@
 # models/user.py
-from turtle import back
 from sqlalchemy import Column, String, Integer, Boolean, ForeignKey
 from sqlalchemy.orm import relationship
 from app.db.database import Base
