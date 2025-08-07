@@ -10,7 +10,7 @@ A FastAPI-based platform where users can list their skills, find others, mark fa
 - Dockerized for easy deployment
 
 ## Tech Stack
-- **Backend:** Python, FastAPI, SQLAlchemy
+- **Backend:** Python, FastAPI,Pydantic, SQLAlchemy
 - **Database:** PostgreSQL
 - **Auth:** JWT
 - **Deployment:** Docker + Render
@@ -61,4 +61,35 @@ Visit: http://127.0.0.1:8000/docs
 
 
 ## Running with Docker
+
+### 1. Either search for prajwaliscoding/skill-swap-api and copy the pull command or directly copy the following command to pull the docker-image.
+``bash
+docker pull prajwaliscoding/skill-swap-api:latest
+```
+
+### 2. Create a .env file(example for Docker).
+```bash
+mkdir Test
+cd Test
+nano .env
+```
+
+### 3. Copy and paste it in it and edit it with you system's PostgreSQL database data. 
+```.env
+DATABASE_URL=postgresql://username:password@host.docker.internal:5432/your_db_name
+SECRET_KEY=replace_with_strong_key
+ALGORITHM=HS256
+ACCESS_TOKEN_EXPIRE_MINUTES=30
+```
+Save & exit (CTRL+O, Enter, CTRL+X).
+
+### 4. Run the container:
+```bash
+docker run --env-file .env -p 8000:8000 prajwaliscoding/skill-swap-api 
+```
+
+### 5. Access the app
+API Root: http://localhost:8000
+Swagger Docs: http://localhost:8000/docs
+
 
