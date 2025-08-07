@@ -63,7 +63,7 @@ Visit: http://127.0.0.1:8000/docs
 ## RUNNING WITH DOCKER
 
 ### 1. Either search for prajwaliscoding/skill-swap-api and copy the pull command or directly copy the following command to pull the docker-image.
-``bash
+```bash
 docker pull prajwaliscoding/skill-swap-api:latest
 ```
 
